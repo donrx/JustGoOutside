@@ -1,6 +1,2 @@
 # JustGoOutside
-
-Running:
-```bash
-node app.js
-```
+go touch grass vro
