@@ -5,44 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>Weather app</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1 id="city">Loading</h1>
-    <div id="week">
-        <div class="day">
-            <h1 class="name"></h1>
-            <h1 class="temp"></h1>
+    <div id="container">
+        <div id="today-container">
+            <div id="city-container">
+                <h1 id="city"></h1>
+                <img id="icon">
+            </div>
+            <div class="cat-container">
+                <h1 style="font-size: larger; margin-bottom: 5px;">Temperature</h1>
+                <h1 id="temp-now"></h1>
+                <h1 id="appr-temp-now" style="margin: 0; font-size: small;"></h1>
+            </div>
+            <div class="cat-container">
+                <h1 style="font-size: larger; margin-bottom: 5px;">Humidity</h1>
+                <h1 id="humid-now"></h1>
+            </div>
+            <div class="cat-container">
+                <h1 style="font-size: larger; margin-bottom: 5px;">Wind</h1>
+                <h1 id="wind-speed"></h1>
+                <h1 id="wind-gusts"></h1>
+                <h1 id="wind-dir"></h1>
+                <canvas id="compass" width="500" height="500" style="width: 200px; height: 200px;"></canvas>
+            </div>
+        </div> 
+        <div id="week-container">
+            <div id="week">
+                <div class="day">
+                    <div class="title">
+                        <h1 class="name"></h1>
+                        <img class="weather">
+                    </div>
+                    <h1 class="temp"></h1>
+                    <h1 class="temp-max"></h1>
+                    <h1 class="temp-min"></h1>
+                </div>
+            </div>
+            <div style="flex-direction: column; display: flex; flex-grow: 1; padding: 10px">
+                <canvas id="chart" style="flex-grow: 1;"></canvas>
+            </div>
         </div>
     </div>
-
-    <script>
-        fetch('api/weather')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('city').textContent = data.city;
-            
-            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const today = new Date();
-            const first = today.getDay();
-
-            const week = document.getElementById('week');
-            const day = document.querySelector('.day');
-
-            for(let i = 1; i < 7; i++){
-                let clone = day.cloneNode(true);
-                week.appendChild(clone);
-            }
-
-            for(let i = 0; i < week.children.length; i++){
-                const name = week.children[i].querySelector('.name');
-                const temp = week.children[i].querySelector('.temp');
-                name.textContent = days[(first + i) % 7]; 
-                temp.textContent = data.temperature[i] + ' Celsius';
-            }
-        })
-        .catch(() => {
-            document.getElementById('city').textContent = "Unknown";
-        });
-    </script>
+    <script type="module" src="load.js"></script>
 </body>
 </html>

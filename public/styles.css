@@ -1,10 +1,62 @@
+*{
+    box-sizing: border-box;
+    font-family:'JetBrains Mono', monospace;
+    font-weight: normal;
+    color: rgb(26, 115, 167);
+}
+
 body{
-    min-height: 100vh;
-    background-image: url('/assets/background.jpg');
+    height: 100vh;
+    background-color: rgb(1, 5, 14);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    padding: 0;
+    margin: 0;
+}
+
+#container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 0;
+    padding: 5px;
+}
+
+#today-container{
+    border: 3px solid rgb(3, 31, 65);
+    border-radius: 10px;
+    flex-grow: 1;
+    padding: 5px;
+}
+
+#city-container, .title{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0;
+}
+
+#icon, .weather{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+}
+
+#city{
+    margin: 0;
+    align-self: center;
+    font-weight: bold;
+}
+
+#week-container{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(3, 31, 65);
+    border-radius: 10px;
+    width: 80%;
+    padding: 5px;
 }
 
 #week{
@@ -14,7 +66,29 @@ body{
 }
 
 .day{
-    width: 200px;
-    height: 300px;
-    background-color: white;
+    width: 100px;
+    background-color: rgb(3, 31, 46);
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    flex-grow: 1;
+}
+
+.name{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.temp, .temp-max, .temp-min, #temp-now, #humid-now, #wind-speed, #wind-dir, #wind-gusts{
+    margin: 0;
+    font-size: medium;
+}
+
+.cat-container{
+    background-color: rgb(3, 31, 46);
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 1px;
 }
