@@ -1,4 +1,4 @@
-async function getWeathers(){
+async function fetchCode(){
     const res = await fetch('./assets/weathers.json');
     const data = await res.json()
     return data;
@@ -231,10 +231,13 @@ try{
     }
     
     const data = await res.json()
+    if(!res.ok){
+        throw new Error(`HTTP ${res.status}, ${res.error}`)
+    }
 
     document.getElementById('city').textContent = data.city;
 
-    const weathers = await getWeathers();
+    const weathers = await fetchCode();
 
     const week = document.getElementById('week');
 
@@ -267,7 +270,9 @@ try{
 
     const imgUrl = data.is_day ? weathers[data.code_now].day.image : weathers[data.code_now].night.image
     icon.src = await getIcon(imgUrl);
-    URL.revokeObjectURL(imgUrl);
+    icon.addEventListener('load', () => {
+        URL.revokeObjectURL(imgUrl);
+    }, {once: true});
 
     const tempNow = document.getElementById('temp-now');
     const apprTempNow = document.getElementById('appr-temp-now');
