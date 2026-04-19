@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
     <div id="container">
         <div id="today-container">
             <div id="city-container">
@@ -15,36 +18,36 @@
                 <img id="icon">
             </div>
             <div class="cat-container">
-                <h1 style="font-size: larger; margin-bottom: 5px;">Temperature</h1>
-                <h1 id="temp-now"></h1>
-                <h1 id="appr-temp-now" style="margin: 0; font-size: small;"></h1>
+                <h2 style="font-size: larger; margin-bottom: 5px; margin-top: 0;">Temperature</h2>
+                <p id="temp-now"></p>
+                <p id="appr-temp-now" style="margin: 0; font-size: small;"></p>
             </div>
             <div class="cat-container">
-                <h1 style="font-size: larger; margin-bottom: 5px;">Humidity</h1>
-                <h1 id="humid-now"></h1>
+                <h2 style="font-size: larger; margin-bottom: 5px; margin-top: 0;">Humidity</h2>
+                <p id="humid-now"><p>
             </div>
             <div class="cat-container">
-                <h1 style="font-size: larger; margin-bottom: 5px;">Wind</h1>
-                <h1 id="wind-speed"></h1>
-                <h1 id="wind-gusts"></h1>
-                <h1 id="wind-dir"></h1>
-                <canvas id="compass" width="500" height="500" style="width: 200px; height: 200px;"></canvas>
+                <h2 style="font-size: larger; margin-bottom: 5px; margin-top: 0;">Wind</h2>
+                <p id="wind-speed"></p>
+                <p id="wind-gusts"></p>
+                <p id="wind-dir"></p>
+                <div id="compass-wrapper" style="aspect-ratio: 1;">
+                    <canvas id="compass"></canvas>
+                </div>       
             </div>
         </div> 
         <div id="week-container">
-            <div id="week">
-                <div class="day">
-                    <div class="title">
-                        <h1 class="name"></h1>
-                        <img class="weather">
-                    </div>
-                    <h1 class="temp"></h1>
-                    <h1 class="temp-max"></h1>
-                    <h1 class="temp-min"></h1>
-                </div>
+            <div id="mode-container">
+                <button class="button" id="temp-button">Temperature</button>
+                <button class="button" id="wind-button">Wind</button>
+                <button class="button" id="humid-button">Humidity</button>
             </div>
-            <div style="flex-direction: column; display: flex; flex-grow: 1; padding: 10px">
-                <canvas id="chart" style="flex-grow: 1;"></canvas>
+            <div id="info-container">
+                <div style="flex-direction: row; flex-grow: 1; min-height: 0; padding: 10px">
+                    <canvas id="chart" style="flex-grow: 1;"></canvas>
+                </div>
+                <div id="week">
+                </div>
             </div>
         </div>
     </div>

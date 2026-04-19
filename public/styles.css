@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
 *{
     box-sizing: border-box;
     font-family:'JetBrains Mono', monospace;
@@ -16,8 +18,43 @@ body{
     margin: 0;
 }
 
+#loading-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(1, 5, 14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+}
+
+.loader {
+  border: 5px solid transparent;
+  border-top: 5px solid rgb(26, 115, 167);
+  border-bottom: 5px solid rgb(26, 115, 167);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 #container{
     height: 100%;
+    max-height: 100vh;
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -28,8 +65,8 @@ body{
 #today-container{
     border: 3px solid rgb(3, 31, 65);
     border-radius: 10px;
-    flex-grow: 1;
     padding: 5px;
+    gap: 10px;
 }
 
 #city-container, .title{
@@ -38,9 +75,15 @@ body{
     padding-bottom: 0;
 }
 
-#icon, .weather{
+#icon{
     height: 40px;
     width: 40px;
+    align-self: center;
+}
+
+.weather{
+    height: 30px;
+    width: 30px;
     align-self: center;
 }
 
@@ -48,15 +91,48 @@ body{
     margin: 0;
     align-self: center;
     font-weight: bold;
+    font-size: x-large;
+}
+
+#mode-container{
+    border: 3px solid rgb(3, 31, 65);
+    border-radius: 10px; 
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.button{
+    color: rgb(26, 115, 167);
+    background-color: rgb(3, 31, 46);
+    border-radius: 5px;
+    margin: 0;
+    padding: 1px 5px;
+    border: none;
+}
+
+.button:hover{
+    background-color: rgb(4, 44, 65);
+    cursor: pointer;
+}
+
+#info-container{
+    min-height: 0;
+    flex-grow: 1;
+    border: 3px solid rgb(3, 31, 65);
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 #week-container{
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(3, 31, 65);
-    border-radius: 10px;
-    width: 80%;
-    padding: 5px;
+    flex-grow: 1;
+    gap: 5px;
 }
 
 #week{
@@ -66,7 +142,6 @@ body{
 }
 
 .day{
-    width: 100px;
     background-color: rgb(3, 31, 46);
     border-radius: 5px;
     padding-left: 5px;
@@ -75,13 +150,20 @@ body{
     flex-grow: 1;
 }
 
+.data{
+    margin: 0;
+    font-size: medium;
+}
+
 .name{
     margin: 0;
     padding: 0;
     font-weight: bold;
+    font-size: large
 }
 
-.temp, .temp-max, .temp-min, #temp-now, #humid-now, #wind-speed, #wind-dir, #wind-gusts{
+.temp, .temp-max, .temp-min, .appr-temp, .appr-temp-max, .appr-temp-min,
+ #temp-now, #humid-now, #wind-speed, #wind-dir, #wind-gusts{
     margin: 0;
     font-size: medium;
 }
@@ -91,4 +173,9 @@ body{
     border-radius: 5px;
     padding-left: 5px;
     padding-bottom: 1px;
+    margin-bottom: 10px;
+}
+
+#compass{
+    display: block;
 }
